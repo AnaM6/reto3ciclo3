@@ -1,11 +1,12 @@
 package co.usa.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name="car")
-public class Car implements Serializable {
+@Table(name = "car")
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,11 @@ public class Car implements Serializable {
     private String brand;
     private Integer model;
     private Integer category_id;
+
+    @ManyToOne
+    @JoinColumn(name = "idGama")
+    @JsonIgnoreProperties("cars")
+    private Gama gama;
 
     public Integer getId() {
         return id;
@@ -44,5 +50,13 @@ public class Car implements Serializable {
 
     public void setCategory_id(Integer category_id) {
         this.category_id = category_id;
+    }
+
+    public Gama getGama() {
+        return gama;
+    }
+
+    public void setGama(Gama gama) {
+        this.gama = gama;
     }
 }
