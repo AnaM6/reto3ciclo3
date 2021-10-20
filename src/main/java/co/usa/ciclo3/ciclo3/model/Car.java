@@ -23,11 +23,12 @@ public class Car implements Serializable {
     private Gama gama;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    private List<Message> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
     private List<Reservation> reservations;
 
-    @OneToMany
-    @JoinColumn(name = "idMessage")
-    private List<Message> messages;
+
 
     public Integer getIdCar() {
         return idCar;

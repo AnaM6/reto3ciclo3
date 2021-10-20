@@ -14,12 +14,16 @@ public class Message implements Serializable {
     private String messageText;
 
     @ManyToOne
+    @JoinColumn(name = "idCar")
+    private Car car;
+
+
+    @ManyToOne
     @JoinColumn(name = "idClient")
     private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "idCar")
-    private Car car;
+
+
 
     public Integer getIdMessage() {
         return idMessage;

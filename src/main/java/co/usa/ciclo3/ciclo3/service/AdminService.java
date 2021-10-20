@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class AdminService {
+
     @Autowired
     private AdminRepository adminRepository;
 

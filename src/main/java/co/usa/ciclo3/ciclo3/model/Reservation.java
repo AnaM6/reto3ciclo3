@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reservation")
@@ -20,13 +21,13 @@ public class Reservation implements Serializable {
     @JoinColumn(name="idCar")
     private Car car;
 
-    @OneToOne
-    @JoinColumn(name="idScore")
-    private Score score;
-
     @ManyToOne
     @JoinColumn(name="idClient")
     private Client client;
+
+    @OneToOne
+    @JoinColumn(name="idScore")
+    private Score score;
 
     public Integer getIdReservation() {
         return IdReservation;
@@ -68,19 +69,19 @@ public class Reservation implements Serializable {
         this.car = car;
     }
 
-    public Score getScore() {
-        return score;
-    }
-
-    public void setScore(Score score) {
-        this.score = score;
-    }
-
     public Client getClient() {
         return client;
     }
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 }

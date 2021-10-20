@@ -1,7 +1,6 @@
 package co.usa.ciclo3.ciclo3.web;
 
 import co.usa.ciclo3.ciclo3.model.Admin;
-import co.usa.ciclo3.ciclo3.model.Car;
 import co.usa.ciclo3.ciclo3.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

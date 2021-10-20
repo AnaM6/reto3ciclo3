@@ -20,10 +20,12 @@ public class Client implements Serializable {
     private Integer age;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    private List<Reservation> reservations;
+    private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    private List<Message> messages;
+    private List<Reservation> reservations;
+
+
 
     public Integer getIdClient() {
         return idClient;
