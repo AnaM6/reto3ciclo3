@@ -25,6 +25,7 @@ public class Gama implements Serializable {
     }
 
     public void setIdGama(Integer idGama) {
+
         this.idGama = idGama;
     }
 

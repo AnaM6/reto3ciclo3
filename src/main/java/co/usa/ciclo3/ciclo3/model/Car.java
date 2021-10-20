@@ -3,14 +3,15 @@ package co.usa.ciclo3.ciclo3.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "car")
-public class Car {
+public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCar;
     private String brand;
     private Integer model;
     private Integer category_id;
@@ -20,12 +21,14 @@ public class Car {
     @JsonIgnoreProperties("cars")
     private Gama gama;
 
-    public Integer getId() {
-        return id;
+
+
+    public Integer getIdCar() {
+        return idCar;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCar(Integer idCar) {
+        this.idCar = idCar;
     }
 
     public String getBrand() {
@@ -59,4 +62,6 @@ public class Car {
     public void setGama(Gama gama) {
         this.gama = gama;
     }
+
+
 }
