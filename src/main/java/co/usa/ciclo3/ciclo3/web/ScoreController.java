@@ -24,8 +24,8 @@ public class ScoreController {
         return scoreService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Score> getScore(@PathVariable("id") int idScore){
+    @GetMapping("/{idScore}")
+    public Optional<Score> getScore(@PathVariable("idScore") int idScore){
 
         return scoreService.getScore(idScore);
     }

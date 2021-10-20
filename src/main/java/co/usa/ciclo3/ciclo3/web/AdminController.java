@@ -23,8 +23,8 @@ public class AdminController {
         return adminService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<Admin> getAdmin(@PathVariable("id") int idAdmin){
+    @GetMapping("/{idAdmin}")
+    public Optional<Admin> getAdmin(@PathVariable("idAdmin") int idAdmin){
 
         return adminService.getAdmin(idAdmin);
     }
