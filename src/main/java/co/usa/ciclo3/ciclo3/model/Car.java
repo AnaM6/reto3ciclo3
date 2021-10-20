@@ -1,31 +1,56 @@
 package co.usa.ciclo3.ciclo3.model;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Clase Car
+ */
 @Entity
 @Table(name = "car")
 public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * Variable idCar
+     */
     private Integer idCar;
+    /**
+     * Variable marca de carro
+     */
     private String brand;
+    /**
+     * Variable del año del carro
+     */
     private Integer year;
+    /**
+     * Variable de la descripción del carro
+     */
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "idGama")
     @JsonIgnoreProperties("cars")
+    /**
+     * Relación de gama con carro
+     */
     private Gama gama;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    /**
+     * Relación de mensajes con carro
+     */
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    /**
+     * Relación de reservaciones con carro
+     */
     private List<Reservation> reservations;
 
 
