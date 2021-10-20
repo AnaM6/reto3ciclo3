@@ -1,5 +1,7 @@
 package co.usa.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,11 +17,13 @@ public class Message implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idCar")
+    @JsonIgnoreProperties("messages")
     private Car car;
 
 
     @ManyToOne
     @JoinColumn(name = "idClient")
+    @JsonIgnoreProperties("messages")
     private Client client;
 
 

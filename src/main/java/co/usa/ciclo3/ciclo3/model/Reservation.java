@@ -1,5 +1,7 @@
 package co.usa.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
@@ -19,14 +21,17 @@ public class Reservation implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="idCar")
+    @JsonIgnoreProperties("reservations")
     private Car car;
 
     @ManyToOne
     @JoinColumn(name="idClient")
+    @JsonIgnoreProperties("reservations")
     private Client client;
 
     @OneToOne
     @JoinColumn(name="idScore")
+    @JsonIgnoreProperties("reservation")
     private Score score;
 
     public Integer getIdReservation() {

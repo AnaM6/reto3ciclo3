@@ -42,12 +42,14 @@ public class Car implements Serializable {
     private Gama gama;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    @JsonIgnoreProperties("car")
     /**
      * Relación de mensajes con carro
      */
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    @JsonIgnoreProperties("car")
     /**
      * Relación de reservaciones con carro
      */

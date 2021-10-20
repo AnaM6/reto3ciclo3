@@ -1,5 +1,7 @@
 package co.usa.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,6 +16,7 @@ public class Score implements Serializable {
 
     @OneToOne
     @JoinColumn(name="idReservation")
+    @JsonIgnoreProperties("score")
     private Reservation reservation;
 
     public Integer getIdScore() {
