@@ -13,6 +13,14 @@ public class Message implements Serializable {
     private Integer idMessage;
     private String messageText;
 
+    @ManyToOne
+    @JoinColumn(name = "idClient")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "idCar")
+    private Car car;
+
     public Integer getIdMessage() {
         return idMessage;
     }
@@ -27,5 +35,21 @@ public class Message implements Serializable {
 
     public void setMessageText(String messageText) {
         this.messageText = messageText;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

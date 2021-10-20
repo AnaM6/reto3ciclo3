@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "car")
@@ -13,15 +14,20 @@ public class Car implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCar;
     private String brand;
-    private Integer model;
-    private Integer category_id;
+    private Integer year;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "idGama")
     @JsonIgnoreProperties("cars")
     private Gama gama;
 
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
+    private List<Reservation> reservations;
 
+    @OneToMany
+    @JoinColumn(name = "idMessage")
+    private List<Message> messages;
 
     public Integer getIdCar() {
         return idCar;
@@ -39,20 +45,20 @@ public class Car implements Serializable {
         this.brand = brand;
     }
 
-    public Integer getModel() {
-        return model;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setModel(Integer model) {
-        this.model = model;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
-    public Integer getCategory_id() {
-        return category_id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Gama getGama() {
@@ -63,5 +69,19 @@ public class Car implements Serializable {
         this.gama = gama;
     }
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 }

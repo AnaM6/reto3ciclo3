@@ -2,7 +2,10 @@ package co.usa.ciclo3.ciclo3.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import co.usa.ciclo3.ciclo3.model.Message;
+
+
 
 @Entity
 @Table(name="client")
@@ -16,7 +19,11 @@ public class Client implements Serializable {
     private String password;
     private Integer age;
 
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
+    private List<Reservation> reservations;
 
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
+    private List<Message> messages;
 
     public Integer getIdClient() {
         return idClient;
@@ -58,5 +65,19 @@ public class Client implements Serializable {
         this.age = age;
     }
 
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 }
