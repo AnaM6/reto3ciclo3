@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
 import java.util.List;
 
@@ -17,22 +17,19 @@ public class Reservation implements Serializable {
     private Integer IdReservation;
     private Date startDate;
     private Date devolutionDate;
-    private String status;
+    private String status="created";
 
     @ManyToOne
-    @JoinColumn(name="idCar")
+    @JoinColumn(name="id")
     @JsonIgnoreProperties("reservations")
     private Car car;
 
     @ManyToOne
     @JoinColumn(name="idClient")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
-    @OneToOne
-    @JoinColumn(name="idScore")
-    @JsonIgnoreProperties("reservation")
-    private Score score;
+     private String score;
 
     public Integer getIdReservation() {
         return IdReservation;
@@ -82,11 +79,11 @@ public class Reservation implements Serializable {
         this.client = client;
     }
 
-    public Score getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(Score score) {
+    public void setScore(String score) {
         this.score = score;
     }
 }

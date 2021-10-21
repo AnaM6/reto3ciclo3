@@ -22,9 +22,9 @@ public class GamaController {
         return gamaService.getAll();
     }
 
-    @GetMapping("/{idGama}")
-    public Optional<Gama> getGama(@PathVariable("idGama") int idGama){
-        return gamaService.getGama(idGama);
+    @GetMapping("/{id}")
+    public Optional<Gama> getGama(@PathVariable("id") int id){
+        return gamaService.getGama(id);
     }
 
     @PostMapping("/save")

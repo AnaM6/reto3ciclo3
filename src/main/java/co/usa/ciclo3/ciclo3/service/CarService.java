@@ -18,8 +18,8 @@ public class CarService {
         return carRepository.getAll();
     }
 
-    public Optional<Car> getCar(int idCar){
-        return carRepository.getCar(idCar);
+    public Optional<Car> getCar(int id){
+        return carRepository.getCar(id);
     }
 
     public Car save(Car c){

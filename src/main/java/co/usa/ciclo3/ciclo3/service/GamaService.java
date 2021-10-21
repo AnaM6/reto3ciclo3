@@ -18,8 +18,8 @@ public class GamaService {
         return gamaRepository.getAll();
     }
 
-    public Optional<Gama> getGama(int idGama){
-        return gamaRepository.getGama(idGama);
+    public Optional<Gama> getGama(int id){
+        return gamaRepository.getGama(id);
     }
 
     public Gama save(Gama g){

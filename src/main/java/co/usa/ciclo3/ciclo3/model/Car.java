@@ -17,9 +17,13 @@ public class Car implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /**
-     * Variable idCar
+     * Variable id
      */
     private Integer idCar;
+    /**
+     * Variable nombre del carro
+     */
+    private String name;
     /**
      * Variable marca de carro
      */
@@ -34,7 +38,7 @@ public class Car implements Serializable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "idGama")
+    @JoinColumn(name = "gamaId")
     @JsonIgnoreProperties("cars")
     /**
      * Relación de gama con carro
@@ -42,20 +46,18 @@ public class Car implements Serializable {
     private Gama gama;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
-    @JsonIgnoreProperties("car")
+    @JsonIgnoreProperties({"car","client"})
     /**
      * Relación de mensajes con carro
      */
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "car")
-    @JsonIgnoreProperties("car")
+    @JsonIgnoreProperties({"car","client"})
     /**
      * Relación de reservaciones con carro
      */
     private List<Reservation> reservations;
-
-
 
     public Integer getIdCar() {
         return idCar;
@@ -63,6 +65,14 @@ public class Car implements Serializable {
 
     public void setIdCar(Integer idCar) {
         this.idCar = idCar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBrand() {
@@ -97,19 +107,19 @@ public class Car implements Serializable {
         this.gama = gama;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
     public List<Message> getMessages() {
         return messages;
     }
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }
