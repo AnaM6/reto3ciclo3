@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "reservation")
@@ -14,7 +12,7 @@ public class Reservation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdReservation;
+    private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
     private String status="created";
@@ -29,14 +27,14 @@ public class Reservation implements Serializable {
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
-     private String score;
+    private String score;
 
     public Integer getIdReservation() {
-        return IdReservation;
+        return idReservation;
     }
 
     public void setIdReservation(Integer idReservation) {
-        IdReservation = idReservation;
+        this.idReservation = idReservation;
     }
 
     public Date getStartDate() {

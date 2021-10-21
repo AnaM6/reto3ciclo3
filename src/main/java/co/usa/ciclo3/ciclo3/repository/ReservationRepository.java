@@ -24,9 +24,9 @@ public class ReservationRepository {
         return reservationCrudRepository.findById(idReservation);
     }
 
-    public Reservation save(Reservation r){
+    public Reservation save(Reservation re){
 
-        return reservationCrudRepository.save(r);
+        return reservationCrudRepository.save(re);
     }
 
 }
