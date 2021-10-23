@@ -33,6 +33,22 @@ public class GamaController {
         return gamaService.save(g);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Gama update(@RequestBody Gama g){
+        return gamaService.update(g);
+    }
+
+    @DeleteMapping ("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteGama(@PathVariable("id") int id){
+        return gamaService.deleteGama(id);
+    }
+
+
+
+
+
 
 
 

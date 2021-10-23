@@ -28,6 +28,10 @@ public class CarRepository {
         return carCrudRepository.save(c);
     }
 
+    public void delete(Car ca){
+        carCrudRepository.delete(ca);
+    }
+
 
 
 }
