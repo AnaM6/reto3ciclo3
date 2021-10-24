@@ -35,5 +35,17 @@ public class MessageController {
         return messageService.save(m);
     }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Message update(@RequestBody Message message){
+        return messageService.update(message);
+    }
+
+    @DeleteMapping ("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteMessage(@PathVariable("id") int id){
+        return messageService.deleteMessage(id);
+    }
+
 
 }

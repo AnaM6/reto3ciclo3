@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.service;
 
 import co.usa.ciclo3.ciclo3.model.Car;
+import co.usa.ciclo3.ciclo3.model.Gama;
 import co.usa.ciclo3.ciclo3.model.Message;
 import co.usa.ciclo3.ciclo3.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,26 @@ public class MessageService {
                 return m;
             }
         }
+    }
+    public Message update(Message message){
+        if(message.getIdMessage()!=null){
+            Optional<Message>g= messageRepository.getMessage(message.getIdMessage());
+            if (!g.isEmpty()){
+                if (message.getMessageText()!=null){
+                    g.get().setMessageText(message.getMessageText());
+                }
+                return messageRepository.save(g.get());
+            }
+        }
+        return message;
+    }
+
+    public boolean deleteMessage(int id){
+        Boolean del = getMessage(id).map(gama -> {
+            messageRepository.delete(gama);
+            return true;
+        }).orElse(false);
+        return del;
     }
 
 }
