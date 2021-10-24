@@ -1,7 +1,7 @@
 package co.usa.ciclo3.ciclo3.service;
 
 
-import co.usa.ciclo3.ciclo3.model.Gama;
+
 import co.usa.ciclo3.ciclo3.model.Reservation;
 import co.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
