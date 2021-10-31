@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,12 @@ public class Car implements Serializable {
      * Variable de la descripción del carro
      */
     private String description;
+    /**
+     * variable de la fecha
+     *  private Date startDate;
+     */
+
+
 
     @ManyToOne
     @JoinColumn(name = "gamaId")

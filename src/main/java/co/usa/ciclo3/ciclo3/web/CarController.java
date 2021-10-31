@@ -2,7 +2,6 @@ package co.usa.ciclo3.ciclo3.web;
 
 
 import co.usa.ciclo3.ciclo3.model.Car;
-import co.usa.ciclo3.ciclo3.model.Gama;
 import co.usa.ciclo3.ciclo3.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,5 +48,6 @@ public class CarController {
        public boolean deleteCar(@PathVariable("id") int id){
               return carService.deleteCar(id);
        }
+
 
 }

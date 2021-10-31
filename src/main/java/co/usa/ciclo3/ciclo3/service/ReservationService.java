@@ -3,10 +3,16 @@ package co.usa.ciclo3.ciclo3.service;
 
 
 import co.usa.ciclo3.ciclo3.model.Reservation;
+import co.usa.ciclo3.ciclo3.model.custom.CountClient;
+import co.usa.ciclo3.ciclo3.model.custom.StatusAmount;
 import co.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,14 +27,14 @@ public class ReservationService {
     /**
      * Definición de variable reservationRepository
      */
-    private ReservationRepository reservationRepository;
+    private ReservationRepository resRepository;
 
     /**
      * Función para obtener los elementos de la tabla reservation
      * @return todos los elementos
      */
     public List<Reservation> getAll(){
-        return reservationRepository.getAll();
+        return resRepository.getAll();
     }
 
     /**
@@ -37,23 +43,23 @@ public class ReservationService {
      * @return el elemento que pertenece a ese id
      */
     public Optional<Reservation> getReservation(int idReservation){
-        return reservationRepository.getReservation(idReservation);
+        return resRepository.getReservation(idReservation);
     }
 
     /**
      * Función para guardar elementos
-     * @param r elemento a guardar
+     * @param reser elemento a guardar
      * @return elemento guardado
      */
-    public Reservation save(Reservation r){
-        if(r.getIdReservation()==null){
-            return reservationRepository.save(r);
+    public Reservation save(Reservation reser){
+        if(reser.getIdReservation()==null){
+            return resRepository.save(reser);
         }else{
-            Optional<Reservation> raux = reservationRepository.getReservation(r.getIdReservation());
+            Optional<Reservation> raux = resRepository.getReservation(reser.getIdReservation());
             if(raux.isEmpty()){
-                return reservationRepository.save(r);
+                return resRepository.save(reser);
             }else{
-                return r;
+                return reser;
             }
         }
     }
@@ -65,15 +71,15 @@ public class ReservationService {
      */
     public Reservation update(Reservation reservation){
         if(reservation.getIdReservation()!=null){
-            Optional<Reservation>g= reservationRepository.getReservation(reservation.getIdReservation());
-            if (!g.isEmpty()){
+            Optional<Reservation>reservation1= resRepository.getReservation(reservation.getIdReservation());
+            if (!reservation1.isEmpty()){
                 if (reservation.getStartDate()!=null){
-                    g.get().setStartDate(reservation.getStartDate());
+                    reservation1.get().setStartDate(reservation.getStartDate());
                 }
                 if(reservation.getDevolutionDate()!=null){
-                    g.get().setDevolutionDate(reservation.getDevolutionDate());
+                    reservation1.get().setDevolutionDate(reservation.getDevolutionDate());
                 }
-                return reservationRepository.save(g.get());
+                return resRepository.save(reservation1.get());
             }
         }
         return reservation;
@@ -81,15 +87,58 @@ public class ReservationService {
 
     /**
      * Función para borrar un elemento
-     * @param id indica el id del elemento que se va a borrar
+     * @param idRes indica el id del elemento que se va a borrar
      * @return lugar vacio del elemento que fue borrado
      */
 
-    public boolean deleteReservation(int id){
-        Boolean del = getReservation(id).map(reservation -> {
-            reservationRepository.delete(reservation);
+    public boolean deleteReservation(int idRes){
+        Boolean delet = getReservation(idRes).map(reservation -> {
+            resRepository.delete(reservation);
             return true;
         }).orElse(false);
-        return del;
+        return delet;
+    }
+
+    /**
+     * Conteo de clientes, para saber que cliente tiene mas reservas
+     * @return repository
+     */
+    public List<CountClient> getTopClients(){
+        return resRepository.getTopClients();
+    }
+
+    /**
+     * Función del status
+     * @return retorno el status para saber cuantos cancelados y completos existen
+     */
+    public StatusAmount getStatusReport(){
+        List<Reservation> completed=resRepository.getReservationByStatus("completed");
+        List<Reservation> cancelled=resRepository.getReservationByStatus("cancelled");
+
+        StatusAmount stAmount = new StatusAmount(completed.size(),cancelled.size());
+        return stAmount;
+    }
+
+    /**
+     * Funcion para el periodo que deseo consultar
+     * @param date1 fecha numero uno
+     * @param date2 fecha numero dos
+     * @return el periodo de tiempo que quiero consultar
+     */
+    public List<Reservation> getReservationPeriod(String date1, String date2){
+        SimpleDateFormat parser= new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOne = new Date();
+        Date dateTwo = new Date();
+        try{
+            dateOne = parser.parse(date1);
+            dateTwo = parser.parse(date2);
+        }catch (ParseException excep){
+            excep.printStackTrace();
+        }
+        if(dateOne.before(dateTwo)){
+            return resRepository.getReservationPeriod(dateOne, dateTwo);
+        }else{
+            return new ArrayList<>();
+        }
     }
 }

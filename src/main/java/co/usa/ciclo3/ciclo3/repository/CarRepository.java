@@ -1,10 +1,13 @@
 package co.usa.ciclo3.ciclo3.repository;
 
 import co.usa.ciclo3.ciclo3.model.Car;
+import co.usa.ciclo3.ciclo3.model.Gama;
 import co.usa.ciclo3.ciclo3.repository.crud.CarCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +34,6 @@ public class CarRepository {
     public void delete(Car ca){
         carCrudRepository.delete(ca);
     }
-
 
 
 }
